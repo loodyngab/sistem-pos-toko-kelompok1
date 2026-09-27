@@ -107,7 +107,7 @@ supaya neraca seimbang sejak awal.
 ## Tampilan Aplikasi
 
 **Login**
-<img width="1913" alt="Login" src="https://github.com/user-attachments/assets/0df974a2-d187-4115-8b78-b62646ed7d09" />
+![Login](docs/screenshots/login.webp)
 
 **Transaksi (POS)**
 <img width="1920" alt="POS" src="https://github.com/user-attachments/assets/0cca059e-2750-4e14-9c7f-b0a69797d943" />
