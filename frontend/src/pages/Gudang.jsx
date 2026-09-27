@@ -8,16 +8,26 @@ const Gudang = () => {
   const { products, stockHistory, handleWriteOff } = useAppContext();
   const [activeTab, setActiveTab] = useState('STOK'); 
   
-  const canWriteOff = ['Owner', 'Kepala Toko'].includes(role);
+  // Write-off = POST /api/stok-opname → backend: allowRoles('Owner', 'Kepala Gudang')
+  const canWriteOff = ['Owner', 'Kepala Gudang'].includes(role);
   
   const [writeOffForm, setWriteOffForm] = useState({ id: '', qty: 1, note: '' });
 
-  const submitWriteOff = (e) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const submitWriteOff = async (e) => {
     e.preventDefault();
     if(!writeOffForm.id) return alert('Pilih produk');
-    handleWriteOff(writeOffForm.id, Number(writeOffForm.qty), writeOffForm.note);
-    alert('Hapus buku (Write-off) berhasil dicatat');
-    setWriteOffForm({ id: '', qty: 1, note: '' });
+    setSubmitting(true);
+    try {
+      await handleWriteOff(writeOffForm.id, Number(writeOffForm.qty), writeOffForm.note);
+      alert('Hapus buku (Write-off) berhasil dicatat');
+      setWriteOffForm({ id: '', qty: 1, note: '' });
+    } catch (err) {
+      alert(`Write-off gagal: ${err.message}`);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -157,8 +167,8 @@ const Gudang = () => {
                   />
                 </div>
               </div>
-              <button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl transition-all shadow-md mt-4">
-                Proses Hapus Buku
+              <button type="submit" disabled={submitting} className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl transition-all shadow-md mt-4 disabled:opacity-60">
+                {submitting ? 'Memproses...' : 'Proses Hapus Buku'}
               </button>
             </form>
           </div>

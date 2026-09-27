@@ -1,9 +1,12 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Home, ShoppingCart, Package, FileText, LogOut, ShieldCheck } from 'lucide-react';
+import { logout } from '../services/api';
 
+// Disesuaikan dengan allowRoles di backend. Kepala Toko tidak punya izin
+// transaksi apa pun di backend, jadi menu Transaksi tidak ditampilkan.
 const ROLE_MENUS = {
   'Owner': ['/laporan', '/transaksi', '/gudang'],
-  'Kepala Toko': ['/transaksi', '/gudang', '/laporan'],
+  'Kepala Toko': ['/laporan', '/gudang'],
   'Bagian Keuangan': ['/laporan'],
   'Akunting': ['/laporan'],
   'Kepala Gudang': ['/gudang', '/transaksi'],
@@ -16,7 +19,7 @@ const Sidebar = ({ role }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('role');
+    logout(); // hapus token + role
     navigate('/');
   };
 
