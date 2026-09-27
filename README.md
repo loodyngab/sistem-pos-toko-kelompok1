@@ -4,6 +4,7 @@ Aplikasi ini merupakan tugas kelompok pembuatan Sistem *Point of Sales* (POS), I
 
 ## 📸 Tampilan Aplikasi
 
+
 **1. Halaman Login (RBAC)**
 <img width="1913" height="976" alt="{E022C38B-18FD-450E-9A74-01D4AF489B78}" src="https://github.com/user-attachments/assets/0df974a2-d187-4115-8b78-b62646ed7d09" />
 
