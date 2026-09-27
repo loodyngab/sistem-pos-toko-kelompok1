@@ -25,6 +25,8 @@ sistem-pos-akuntansi/
 
 Butuh: Node.js 18+ dan MySQL (XAMPP/Laragon di Windows, DBngin di Mac).
 
+> **Windows:** ganti `cp .env.example .env` dengan `copy .env.example .env`.
+
 **1. Database** — jalankan berurutan di database client (DBeaver, phpMyAdmin, dst):
 ```
 database/schema.sql
